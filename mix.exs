@@ -1,9 +1,9 @@
-defmodule XeroAccountingAPI.Mixfile do
+defmodule Xero.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :xero_accounting_api,
+      app: :xero_elixir,
       source_url: "https://github.com/kernel-io/xero-elixir",
       version: "2.17.1",
       elixir: "~> 1.6",
