@@ -27,7 +27,7 @@ defmodule Xero.Api.Accounting do
   @spec create_account(Tesla.Env.client(), Xero.Model.Account.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Accounts.t()} | {:ok, Xero.Model.Error.t()} | {:error, Tesla.Env.t()}
   def create_account(connection, account, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Accounts")
     |> add_param(:body, :body, account)
@@ -75,7 +75,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Accounts/#{account_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -123,7 +123,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -168,7 +168,7 @@ defmodule Xero.Api.Accounting do
         bank_transaction_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BankTransactions/#{bank_transaction_id}/History")
     |> add_param(:body, :body, history_records)
@@ -250,7 +250,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.Error.t()}
           | {:error, Tesla.Env.t()}
   def create_bank_transfer(connection, bank_transfers, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BankTransfers")
     |> add_param(:body, :body, bank_transfers)
@@ -297,7 +297,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -342,7 +342,7 @@ defmodule Xero.Api.Accounting do
         bank_transfer_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BankTransfers/#{bank_transfer_id}/History")
     |> add_param(:body, :body, history_records)
@@ -430,7 +430,7 @@ defmodule Xero.Api.Accounting do
         batch_payment_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BatchPayments/#{batch_payment_id}/History")
     |> add_param(:body, :body, history_records)
@@ -475,7 +475,7 @@ defmodule Xero.Api.Accounting do
         branding_theme_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/BrandingThemes/#{branding_theme_id}/PaymentServices")
     |> add_param(:body, :body, payment_service)
@@ -522,7 +522,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Contacts/#{contact_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -559,7 +559,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.ContactGroups.t()}
           | {:error, Tesla.Env.t()}
   def create_contact_group(connection, contact_groups, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ContactGroups")
     |> add_param(:body, :body, contact_groups)
@@ -602,7 +602,7 @@ defmodule Xero.Api.Accounting do
         contact_group_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ContactGroups/#{contact_group_id}/Contacts")
     |> add_param(:body, :body, contacts)
@@ -641,7 +641,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.HistoryRecords.t()}
           | {:error, Tesla.Env.t()}
   def create_contact_history(connection, history_records, xero_tenant_id, contact_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Contacts/#{contact_id}/History")
     |> add_param(:body, :body, history_records)
@@ -827,7 +827,7 @@ defmodule Xero.Api.Accounting do
         credit_note_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/CreditNotes/#{credit_note_id}/History")
     |> add_param(:body, :body, history_records)
@@ -897,7 +897,7 @@ defmodule Xero.Api.Accounting do
   @spec create_currency(Tesla.Env.client(), Xero.Model.Currency.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Currencies.t()} | {:error, Tesla.Env.t()}
   def create_currency(connection, currency, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Currencies")
     |> add_param(:body, :body, currency)
@@ -974,7 +974,7 @@ defmodule Xero.Api.Accounting do
         expense_claim_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ExpenseClaims/#{expense_claim_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1010,7 +1010,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.Error.t()}
           | {:error, Tesla.Env.t()}
   def create_expense_claims(connection, expense_claims, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ExpenseClaims")
     |> add_param(:body, :body, expense_claims)
@@ -1103,7 +1103,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.HistoryRecords.t()}
           | {:error, Tesla.Env.t()}
   def create_invoice_history(connection, history_records, xero_tenant_id, invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Invoices/#{invoice_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1177,7 +1177,7 @@ defmodule Xero.Api.Accounting do
           keyword()
         ) :: {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def create_item_history(connection, history_records, xero_tenant_id, item_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Items/#{item_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1251,7 +1251,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.LinkedTransactions.t()}
           | {:error, Tesla.Env.t()}
   def create_linked_transaction(connection, linked_transaction, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/LinkedTransactions")
     |> add_param(:body, :body, linked_transaction)
@@ -1299,7 +1299,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -1344,7 +1344,7 @@ defmodule Xero.Api.Accounting do
         manual_journal_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ManualJournals/#{manual_journal_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1483,7 +1483,7 @@ defmodule Xero.Api.Accounting do
         overpayment_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Overpayments/#{overpayment_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1513,7 +1513,7 @@ defmodule Xero.Api.Accounting do
   @spec create_payment(Tesla.Env.client(), Xero.Model.Payment.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Error.t()} | {:ok, Xero.Model.Payments.t()} | {:error, Tesla.Env.t()}
   def create_payment(connection, payment, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Payments")
     |> add_param(:body, :body, payment)
@@ -1552,7 +1552,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.HistoryRecords.t()}
           | {:error, Tesla.Env.t()}
   def create_payment_history(connection, history_records, xero_tenant_id, payment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Payments/#{payment_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1589,7 +1589,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.PaymentServices.t()}
           | {:error, Tesla.Env.t()}
   def create_payment_service(connection, payment_services, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/PaymentServices")
     |> add_param(:body, :body, payment_services)
@@ -1721,7 +1721,7 @@ defmodule Xero.Api.Accounting do
         prepayment_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Prepayments/#{prepayment_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1769,7 +1769,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -1814,7 +1814,7 @@ defmodule Xero.Api.Accounting do
         purchase_order_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/PurchaseOrders/#{purchase_order_id}/History")
     |> add_param(:body, :body, history_records)
@@ -1905,7 +1905,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Quotes/#{quote_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -1944,7 +1944,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.HistoryRecords.t()}
           | {:error, Tesla.Env.t()}
   def create_quote_history(connection, history_records, xero_tenant_id, quote_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Quotes/#{quote_id}/History")
     |> add_param(:body, :body, history_records)
@@ -2064,7 +2064,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Receipts/#{receipt_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -2103,7 +2103,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.HistoryRecords.t()}
           | {:error, Tesla.Env.t()}
   def create_receipt_history(connection, history_records, xero_tenant_id, receipt_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Receipts/#{receipt_id}/History")
     |> add_param(:body, :body, history_records)
@@ -2151,7 +2151,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -2196,7 +2196,7 @@ defmodule Xero.Api.Accounting do
         repeating_invoice_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/History")
     |> add_param(:body, :body, history_records)
@@ -2226,7 +2226,7 @@ defmodule Xero.Api.Accounting do
   @spec create_tax_rates(Tesla.Env.client(), Xero.Model.TaxRates.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Error.t()} | {:ok, Xero.Model.TaxRates.t()} | {:error, Tesla.Env.t()}
   def create_tax_rates(connection, tax_rates, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/TaxRates")
     |> add_param(:body, :body, tax_rates)
@@ -2263,7 +2263,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.TrackingCategories.t()}
           | {:error, Tesla.Env.t()}
   def create_tracking_category(connection, tracking_category, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/TrackingCategories")
     |> add_param(:body, :body, tracking_category)
@@ -2308,7 +2308,7 @@ defmodule Xero.Api.Accounting do
         tracking_category_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/TrackingCategories/#{tracking_category_id}/Options")
     |> add_param(:body, :body, tracking_option)
@@ -2338,7 +2338,7 @@ defmodule Xero.Api.Accounting do
   @spec delete_account(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Accounts.t()} | {:ok, Xero.Model.Error.t()} | {:error, Tesla.Env.t()}
   def delete_account(connection, xero_tenant_id, account_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/Accounts/#{account_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2379,7 +2379,7 @@ defmodule Xero.Api.Accounting do
         contact_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/ContactGroups/#{contact_group_id}/Contacts/#{contact_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2408,7 +2408,7 @@ defmodule Xero.Api.Accounting do
   @spec delete_contact_group_contacts(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, nil} | {:error, Tesla.Env.t()}
   def delete_contact_group_contacts(connection, xero_tenant_id, contact_group_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/ContactGroups/#{contact_group_id}/Contacts")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2436,7 +2436,7 @@ defmodule Xero.Api.Accounting do
   @spec delete_item(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, nil} | {:ok, Xero.Model.Error.t()} | {:error, Tesla.Env.t()}
   def delete_item(connection, xero_tenant_id, item_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/Items/#{item_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2465,7 +2465,7 @@ defmodule Xero.Api.Accounting do
   @spec delete_linked_transaction(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, nil} | {:ok, Xero.Model.Error.t()} | {:error, Tesla.Env.t()}
   def delete_linked_transaction(connection, xero_tenant_id, linked_transaction_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/LinkedTransactions/#{linked_transaction_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2501,7 +2501,7 @@ defmodule Xero.Api.Accounting do
         ) ::
           {:ok, Xero.Model.Error.t()} | {:ok, Xero.Model.Payments.t()} | {:error, Tesla.Env.t()}
   def delete_payment(connection, payment_delete, xero_tenant_id, payment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Payments/#{payment_id}")
     |> add_param(:body, :body, payment_delete)
@@ -2533,7 +2533,7 @@ defmodule Xero.Api.Accounting do
           | {:ok, Xero.Model.TrackingCategories.t()}
           | {:error, Tesla.Env.t()}
   def delete_tracking_category(connection, xero_tenant_id, tracking_category_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/TrackingCategories/#{tracking_category_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2571,7 +2571,7 @@ defmodule Xero.Api.Accounting do
         tracking_option_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:delete)
     |> url("/TrackingCategories/#{tracking_category_id}/Options/#{tracking_option_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2606,7 +2606,7 @@ defmodule Xero.Api.Accounting do
           keyword()
         ) :: {:ok, nil} | {:ok, Xero.Model.Error.t()} | {:error, Tesla.Env.t()}
   def email_invoice(connection, request_empty, xero_tenant_id, invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Invoices/#{invoice_id}/Email")
     |> add_param(:body, :body, request_empty)
@@ -2636,7 +2636,7 @@ defmodule Xero.Api.Accounting do
   @spec get_account(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Accounts.t()} | {:error, Tesla.Env.t()}
   def get_account(connection, xero_tenant_id, account_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Accounts/#{account_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2679,7 +2679,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Accounts/#{account_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2723,7 +2723,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Accounts/#{account_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2752,7 +2752,7 @@ defmodule Xero.Api.Accounting do
   @spec get_account_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_account_attachments(connection, xero_tenant_id, account_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Accounts/#{account_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2866,7 +2866,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2910,7 +2910,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -2944,7 +2944,7 @@ defmodule Xero.Api.Accounting do
         bank_transaction_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3013,7 +3013,7 @@ defmodule Xero.Api.Accounting do
   @spec get_bank_transactions_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_bank_transactions_history(connection, xero_tenant_id, bank_transaction_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3041,7 +3041,7 @@ defmodule Xero.Api.Accounting do
   @spec get_bank_transfer(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.BankTransfers.t()} | {:error, Tesla.Env.t()}
   def get_bank_transfer(connection, xero_tenant_id, bank_transfer_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3084,7 +3084,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3128,7 +3128,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3157,7 +3157,7 @@ defmodule Xero.Api.Accounting do
   @spec get_bank_transfer_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_bank_transfer_attachments(connection, xero_tenant_id, bank_transfer_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3185,7 +3185,7 @@ defmodule Xero.Api.Accounting do
   @spec get_bank_transfer_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_bank_transfer_history(connection, xero_tenant_id, bank_transfer_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3250,7 +3250,7 @@ defmodule Xero.Api.Accounting do
   @spec get_batch_payment_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_batch_payment_history(connection, xero_tenant_id, batch_payment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BatchPayments/#{batch_payment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3315,7 +3315,7 @@ defmodule Xero.Api.Accounting do
   @spec get_branding_theme(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.BrandingThemes.t()} | {:error, Tesla.Env.t()}
   def get_branding_theme(connection, xero_tenant_id, branding_theme_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BrandingThemes/#{branding_theme_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3348,7 +3348,7 @@ defmodule Xero.Api.Accounting do
         branding_theme_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BrandingThemes/#{branding_theme_id}/PaymentServices")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3375,7 +3375,7 @@ defmodule Xero.Api.Accounting do
   @spec get_branding_themes(Tesla.Env.client(), String.t(), keyword()) ::
           {:ok, Xero.Model.BrandingThemes.t()} | {:error, Tesla.Env.t()}
   def get_branding_themes(connection, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BrandingThemes")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3476,7 +3476,7 @@ defmodule Xero.Api.Accounting do
   @spec get_contact(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Contacts.t()} | {:error, Tesla.Env.t()}
   def get_contact(connection, xero_tenant_id, contact_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3519,7 +3519,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3563,7 +3563,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3592,7 +3592,7 @@ defmodule Xero.Api.Accounting do
   @spec get_contact_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_contact_attachments(connection, xero_tenant_id, contact_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3620,7 +3620,7 @@ defmodule Xero.Api.Accounting do
   @spec get_contact_by_contact_number(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Contacts.t()} | {:error, Tesla.Env.t()}
   def get_contact_by_contact_number(connection, xero_tenant_id, contact_number, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_number}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3648,7 +3648,7 @@ defmodule Xero.Api.Accounting do
   @spec get_contact_cis_settings(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.CisSettings.t()} | {:error, Tesla.Env.t()}
   def get_contact_cis_settings(connection, xero_tenant_id, contact_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_id}/CISSettings")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3676,7 +3676,7 @@ defmodule Xero.Api.Accounting do
   @spec get_contact_group(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.ContactGroups.t()} | {:error, Tesla.Env.t()}
   def get_contact_group(connection, xero_tenant_id, contact_group_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ContactGroups/#{contact_group_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3739,7 +3739,7 @@ defmodule Xero.Api.Accounting do
   @spec get_contact_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_contact_history(connection, xero_tenant_id, contact_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts/#{contact_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3848,7 +3848,7 @@ defmodule Xero.Api.Accounting do
   @spec get_credit_note_as_pdf(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, String.t()} | {:error, Tesla.Env.t()}
   def get_credit_note_as_pdf(connection, xero_tenant_id, credit_note_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3891,7 +3891,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3935,7 +3935,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3964,7 +3964,7 @@ defmodule Xero.Api.Accounting do
   @spec get_credit_note_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_credit_note_attachments(connection, xero_tenant_id, credit_note_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -3992,7 +3992,7 @@ defmodule Xero.Api.Accounting do
   @spec get_credit_note_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_credit_note_history(connection, xero_tenant_id, credit_note_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4096,7 +4096,7 @@ defmodule Xero.Api.Accounting do
   @spec get_employee(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Employees.t()} | {:error, Tesla.Env.t()}
   def get_employee(connection, xero_tenant_id, employee_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Employees/#{employee_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4161,7 +4161,7 @@ defmodule Xero.Api.Accounting do
   @spec get_expense_claim(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.ExpenseClaims.t()} | {:error, Tesla.Env.t()}
   def get_expense_claim(connection, xero_tenant_id, expense_claim_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ExpenseClaims/#{expense_claim_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4189,7 +4189,7 @@ defmodule Xero.Api.Accounting do
   @spec get_expense_claim_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_expense_claim_history(connection, xero_tenant_id, expense_claim_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ExpenseClaims/#{expense_claim_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4288,7 +4288,7 @@ defmodule Xero.Api.Accounting do
   @spec get_invoice_as_pdf(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, String.t()} | {:error, Tesla.Env.t()}
   def get_invoice_as_pdf(connection, xero_tenant_id, invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4331,7 +4331,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4375,7 +4375,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4404,7 +4404,7 @@ defmodule Xero.Api.Accounting do
   @spec get_invoice_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_invoice_attachments(connection, xero_tenant_id, invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4432,7 +4432,7 @@ defmodule Xero.Api.Accounting do
   @spec get_invoice_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_invoice_history(connection, xero_tenant_id, invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4459,7 +4459,7 @@ defmodule Xero.Api.Accounting do
   @spec get_invoice_reminders(Tesla.Env.client(), String.t(), keyword()) ::
           {:ok, Xero.Model.InvoiceReminders.t()} | {:error, Tesla.Env.t()}
   def get_invoice_reminders(connection, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/InvoiceReminders/Settings")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4576,7 +4576,7 @@ defmodule Xero.Api.Accounting do
   @spec get_item_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_item_history(connection, xero_tenant_id, item_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Items/#{item_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4643,7 +4643,7 @@ defmodule Xero.Api.Accounting do
   @spec get_journal(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Journals.t()} | {:error, Tesla.Env.t()}
   def get_journal(connection, xero_tenant_id, journal_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Journals/#{journal_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4708,7 +4708,7 @@ defmodule Xero.Api.Accounting do
   @spec get_linked_transaction(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.LinkedTransactions.t()} | {:error, Tesla.Env.t()}
   def get_linked_transaction(connection, xero_tenant_id, linked_transaction_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/LinkedTransactions/#{linked_transaction_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4779,7 +4779,7 @@ defmodule Xero.Api.Accounting do
   @spec get_manual_journal(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.ManualJournals.t()} | {:error, Tesla.Env.t()}
   def get_manual_journal(connection, xero_tenant_id, manual_journal_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4822,7 +4822,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4866,7 +4866,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4895,7 +4895,7 @@ defmodule Xero.Api.Accounting do
   @spec get_manual_journal_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_manual_journal_attachments(connection, xero_tenant_id, manual_journal_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4962,7 +4962,7 @@ defmodule Xero.Api.Accounting do
   @spec get_manual_journals_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_manual_journals_history(connection, xero_tenant_id, manual_journal_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -4990,7 +4990,7 @@ defmodule Xero.Api.Accounting do
   @spec get_online_invoice(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.OnlineInvoices.t()} | {:error, Tesla.Env.t()}
   def get_online_invoice(connection, xero_tenant_id, invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/OnlineInvoice")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5017,7 +5017,7 @@ defmodule Xero.Api.Accounting do
   @spec get_organisation_actions(Tesla.Env.client(), String.t(), keyword()) ::
           {:ok, Xero.Model.Actions.t()} | {:error, Tesla.Env.t()}
   def get_organisation_actions(connection, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Organisation/Actions")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5045,7 +5045,7 @@ defmodule Xero.Api.Accounting do
   @spec get_organisation_cis_settings(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.CisOrgSettings.t()} | {:error, Tesla.Env.t()}
   def get_organisation_cis_settings(connection, xero_tenant_id, organisation_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Organisation/#{organisation_id}/CISSettings")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5072,7 +5072,7 @@ defmodule Xero.Api.Accounting do
   @spec get_organisations(Tesla.Env.client(), String.t(), keyword()) ::
           {:ok, Xero.Model.Organisations.t()} | {:error, Tesla.Env.t()}
   def get_organisations(connection, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Organisation")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5100,7 +5100,7 @@ defmodule Xero.Api.Accounting do
   @spec get_overpayment(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Overpayments.t()} | {:error, Tesla.Env.t()}
   def get_overpayment(connection, xero_tenant_id, overpayment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Overpayments/#{overpayment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5128,7 +5128,7 @@ defmodule Xero.Api.Accounting do
   @spec get_overpayment_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_overpayment_history(connection, xero_tenant_id, overpayment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Overpayments/#{overpayment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5197,7 +5197,7 @@ defmodule Xero.Api.Accounting do
   @spec get_payment(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Payments.t()} | {:error, Tesla.Env.t()}
   def get_payment(connection, xero_tenant_id, payment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Payments/#{payment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5225,7 +5225,7 @@ defmodule Xero.Api.Accounting do
   @spec get_payment_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_payment_history(connection, xero_tenant_id, payment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Payments/#{payment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5252,7 +5252,7 @@ defmodule Xero.Api.Accounting do
   @spec get_payment_services(Tesla.Env.client(), String.t(), keyword()) ::
           {:ok, Xero.Model.PaymentServices.t()} | {:error, Tesla.Env.t()}
   def get_payment_services(connection, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PaymentServices")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5319,7 +5319,7 @@ defmodule Xero.Api.Accounting do
   @spec get_prepayment(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Prepayments.t()} | {:error, Tesla.Env.t()}
   def get_prepayment(connection, xero_tenant_id, prepayment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Prepayments/#{prepayment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5347,7 +5347,7 @@ defmodule Xero.Api.Accounting do
   @spec get_prepayment_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_prepayment_history(connection, xero_tenant_id, prepayment_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Prepayments/#{prepayment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5416,7 +5416,7 @@ defmodule Xero.Api.Accounting do
   @spec get_purchase_order(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.PurchaseOrders.t()} | {:error, Tesla.Env.t()}
   def get_purchase_order(connection, xero_tenant_id, purchase_order_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5444,7 +5444,7 @@ defmodule Xero.Api.Accounting do
   @spec get_purchase_order_as_pdf(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, String.t()} | {:error, Tesla.Env.t()}
   def get_purchase_order_as_pdf(connection, xero_tenant_id, purchase_order_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5487,7 +5487,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5531,7 +5531,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5560,7 +5560,7 @@ defmodule Xero.Api.Accounting do
   @spec get_purchase_order_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_purchase_order_attachments(connection, xero_tenant_id, purchase_order_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5588,7 +5588,7 @@ defmodule Xero.Api.Accounting do
   @spec get_purchase_order_by_number(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.PurchaseOrders.t()} | {:error, Tesla.Env.t()}
   def get_purchase_order_by_number(connection, xero_tenant_id, purchase_order_number, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_number}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5616,7 +5616,7 @@ defmodule Xero.Api.Accounting do
   @spec get_purchase_order_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_purchase_order_history(connection, xero_tenant_id, purchase_order_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5687,7 +5687,7 @@ defmodule Xero.Api.Accounting do
   @spec get_quote(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Quotes.t()} | {:error, Tesla.Env.t()}
   def get_quote(connection, xero_tenant_id, quote_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes/#{quote_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5715,7 +5715,7 @@ defmodule Xero.Api.Accounting do
   @spec get_quote_as_pdf(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, String.t()} | {:error, Tesla.Env.t()}
   def get_quote_as_pdf(connection, xero_tenant_id, quote_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes/#{quote_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5758,7 +5758,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes/#{quote_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5802,7 +5802,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes/#{quote_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5831,7 +5831,7 @@ defmodule Xero.Api.Accounting do
   @spec get_quote_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_quote_attachments(connection, xero_tenant_id, quote_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes/#{quote_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5859,7 +5859,7 @@ defmodule Xero.Api.Accounting do
   @spec get_quote_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_quote_history(connection, xero_tenant_id, quote_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes/#{quote_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -5987,7 +5987,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Receipts/#{receipt_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6031,7 +6031,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Receipts/#{receipt_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6060,7 +6060,7 @@ defmodule Xero.Api.Accounting do
   @spec get_receipt_attachments(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Attachments.t()} | {:error, Tesla.Env.t()}
   def get_receipt_attachments(connection, xero_tenant_id, receipt_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Receipts/#{receipt_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6088,7 +6088,7 @@ defmodule Xero.Api.Accounting do
   @spec get_receipt_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_receipt_history(connection, xero_tenant_id, receipt_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Receipts/#{receipt_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6155,7 +6155,7 @@ defmodule Xero.Api.Accounting do
   @spec get_repeating_invoice(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.RepeatingInvoices.t()} | {:error, Tesla.Env.t()}
   def get_repeating_invoice(connection, xero_tenant_id, repeating_invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6198,7 +6198,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6242,7 +6242,7 @@ defmodule Xero.Api.Accounting do
         content_type,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6276,7 +6276,7 @@ defmodule Xero.Api.Accounting do
         repeating_invoice_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6304,7 +6304,7 @@ defmodule Xero.Api.Accounting do
   @spec get_repeating_invoice_history(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.HistoryRecords.t()} | {:error, Tesla.Env.t()}
   def get_repeating_invoice_history(connection, xero_tenant_id, repeating_invoice_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6599,7 +6599,7 @@ defmodule Xero.Api.Accounting do
   @spec get_report_from_id(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.ReportWithRows.t()} | {:error, Tesla.Env.t()}
   def get_report_from_id(connection, xero_tenant_id, report_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/#{report_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6745,7 +6745,7 @@ defmodule Xero.Api.Accounting do
   @spec get_reports_list(Tesla.Env.client(), String.t(), keyword()) ::
           {:ok, Xero.Model.ReportWithRows.t()} | {:error, Tesla.Env.t()}
   def get_reports_list(connection, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6847,7 +6847,7 @@ defmodule Xero.Api.Accounting do
   @spec get_tracking_category(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.TrackingCategories.t()} | {:error, Tesla.Env.t()}
   def get_tracking_category(connection, xero_tenant_id, tracking_category_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/TrackingCategories/#{tracking_category_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6875,7 +6875,7 @@ defmodule Xero.Api.Accounting do
   @spec get_user(Tesla.Env.client(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Users.t()} | {:error, Tesla.Env.t()}
   def get_user(connection, xero_tenant_id, user_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Users/#{user_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
@@ -6940,7 +6940,7 @@ defmodule Xero.Api.Accounting do
   @spec post_setup(Tesla.Env.client(), Xero.Model.Setup.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.ImportSummaryObject.t()} | {:error, Tesla.Env.t()}
   def post_setup(connection, setup, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Setup")
     |> add_param(:body, :body, setup)
@@ -6976,7 +6976,7 @@ defmodule Xero.Api.Accounting do
         ) ::
           {:ok, Xero.Model.Accounts.t()} | {:ok, Xero.Model.Error.t()} | {:error, Tesla.Env.t()}
   def update_account(connection, accounts, xero_tenant_id, account_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Accounts/#{account_id}")
     |> add_param(:body, :body, accounts)
@@ -7024,7 +7024,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Accounts/#{account_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -7123,7 +7123,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -7170,7 +7170,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -7207,7 +7207,7 @@ defmodule Xero.Api.Accounting do
         ) ::
           {:ok, Xero.Model.Error.t()} | {:ok, Xero.Model.Contacts.t()} | {:error, Tesla.Env.t()}
   def update_contact(connection, contacts, xero_tenant_id, contact_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Contacts/#{contact_id}")
     |> add_param(:body, :body, contacts)
@@ -7254,7 +7254,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Contacts/#{contact_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -7299,7 +7299,7 @@ defmodule Xero.Api.Accounting do
         contact_group_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/ContactGroups/#{contact_group_id}")
     |> add_param(:body, :body, contact_groups)
@@ -7392,7 +7392,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -7437,7 +7437,7 @@ defmodule Xero.Api.Accounting do
         expense_claim_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/ExpenseClaims/#{expense_claim_id}")
     |> add_param(:body, :body, expense_claims)
@@ -7528,7 +7528,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Invoices/#{invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -7610,7 +7610,7 @@ defmodule Xero.Api.Accounting do
         linked_transaction_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/LinkedTransactions/#{linked_transaction_id}")
     |> add_param(:body, :body, linked_transactions)
@@ -7655,7 +7655,7 @@ defmodule Xero.Api.Accounting do
         manual_journal_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/ManualJournals/#{manual_journal_id}")
     |> add_param(:body, :body, manual_journals)
@@ -7703,7 +7703,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -8128,7 +8128,7 @@ defmodule Xero.Api.Accounting do
         purchase_order_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/PurchaseOrders/#{purchase_order_id}")
     |> add_param(:body, :body, purchase_orders)
@@ -8176,7 +8176,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -8207,7 +8207,7 @@ defmodule Xero.Api.Accounting do
   @spec update_quote(Tesla.Env.client(), Xero.Model.Quotes.t(), String.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Error.t()} | {:ok, Xero.Model.Quotes.t()} | {:error, Tesla.Env.t()}
   def update_quote(connection, quotes, xero_tenant_id, quote_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Quotes/#{quote_id}")
     |> add_param(:body, :body, quotes)
@@ -8255,7 +8255,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Quotes/#{quote_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -8346,7 +8346,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Receipts/#{receipt_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -8394,7 +8394,7 @@ defmodule Xero.Api.Accounting do
         file_name,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
@@ -8424,7 +8424,7 @@ defmodule Xero.Api.Accounting do
   @spec update_tax_rate(Tesla.Env.client(), Xero.Model.TaxRates.t(), String.t(), keyword()) ::
           {:ok, Xero.Model.Error.t()} | {:ok, Xero.Model.TaxRates.t()} | {:error, Tesla.Env.t()}
   def update_tax_rate(connection, tax_rates, xero_tenant_id, _opts \\ []) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/TaxRates")
     |> add_param(:body, :body, tax_rates)
@@ -8469,7 +8469,7 @@ defmodule Xero.Api.Accounting do
         tracking_category_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/TrackingCategories/#{tracking_category_id}")
     |> add_param(:body, :body, tracking_category)
@@ -8517,7 +8517,7 @@ defmodule Xero.Api.Accounting do
         tracking_option_id,
         _opts \\ []
       ) do
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/TrackingCategories/#{tracking_category_id}/Options/#{tracking_option_id}")
     |> add_param(:body, :body, tracking_option)
