@@ -32,7 +32,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Accounts")
     |> add_param(:body, :body, account)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Accounts{}},
@@ -80,7 +80,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Accounts/#{account_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -128,7 +128,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -173,7 +173,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransactions/#{bank_transaction_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -212,13 +212,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BankTransactions")
     |> add_param(:body, :body, bank_transactions)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransactions{}},
@@ -255,7 +255,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransfers")
     |> add_param(:body, :body, bank_transfers)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransfers{}},
@@ -302,7 +302,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -347,7 +347,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransfers/#{bank_transfer_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -384,13 +384,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/BatchPayments")
     |> add_param(:body, :body, batch_payments)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BatchPayments{}},
@@ -435,7 +435,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BatchPayments/#{batch_payment_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -480,7 +480,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BrandingThemes/#{branding_theme_id}/PaymentServices")
     |> add_param(:body, :body, payment_service)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PaymentServices{}},
@@ -527,7 +527,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Contacts/#{contact_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -564,7 +564,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ContactGroups")
     |> add_param(:body, :body, contact_groups)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ContactGroups{}},
@@ -607,7 +607,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ContactGroups/#{contact_group_id}/Contacts")
     |> add_param(:body, :body, contacts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}},
@@ -646,7 +646,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Contacts/#{contact_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -676,13 +676,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Contacts")
     |> add_param(:body, :body, contacts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}},
@@ -727,13 +727,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/CreditNotes/#{credit_note_id}/Allocations")
     |> add_param(:body, :body, allocations)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Allocations{}},
@@ -781,13 +781,13 @@ defmodule Xero.Api.Accounting do
       :IncludeOnline => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -832,7 +832,7 @@ defmodule Xero.Api.Accounting do
     |> url("/CreditNotes/#{credit_note_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -866,13 +866,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/CreditNotes")
     |> add_param(:body, :body, credit_notes)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CreditNotes{}},
@@ -902,7 +902,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Currencies")
     |> add_param(:body, :body, currency)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Currencies{}}
@@ -931,13 +931,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Employees")
     |> add_param(:body, :body, employees)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Employees{}},
@@ -979,7 +979,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ExpenseClaims/#{expense_claim_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -1015,7 +1015,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ExpenseClaims")
     |> add_param(:body, :body, expense_claims)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ExpenseClaims{}},
@@ -1063,13 +1063,13 @@ defmodule Xero.Api.Accounting do
       :IncludeOnline => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Invoices/#{invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -1108,7 +1108,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Invoices/#{invoice_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1140,13 +1140,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Invoices")
     |> add_param(:body, :body, invoices)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Invoices{}},
@@ -1182,7 +1182,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Items/#{item_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -1213,13 +1213,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Items")
     |> add_param(:body, :body, items)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Items{}},
@@ -1256,7 +1256,7 @@ defmodule Xero.Api.Accounting do
     |> url("/LinkedTransactions")
     |> add_param(:body, :body, linked_transaction)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.LinkedTransactions{}},
@@ -1304,7 +1304,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -1349,7 +1349,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ManualJournals/#{manual_journal_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1386,13 +1386,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/ManualJournals")
     |> add_param(:body, :body, manual_journals)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ManualJournals{}},
@@ -1437,13 +1437,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Overpayments/#{overpayment_id}/Allocations")
     |> add_param(:body, :body, allocations)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Allocations{}},
@@ -1488,7 +1488,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Overpayments/#{overpayment_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1518,7 +1518,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Payments")
     |> add_param(:body, :body, payment)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Payments{}},
@@ -1557,7 +1557,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Payments/#{payment_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1594,7 +1594,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PaymentServices")
     |> add_param(:body, :body, payment_services)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PaymentServices{}},
@@ -1624,13 +1624,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Payments")
     |> add_param(:body, :body, payments)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Payments{}},
@@ -1675,13 +1675,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Prepayments/#{prepayment_id}/Allocations")
     |> add_param(:body, :body, allocations)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Allocations{}},
@@ -1726,7 +1726,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Prepayments/#{prepayment_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1774,7 +1774,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -1819,7 +1819,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PurchaseOrders/#{purchase_order_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1856,13 +1856,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/PurchaseOrders")
     |> add_param(:body, :body, purchase_orders)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PurchaseOrders{}},
@@ -1910,7 +1910,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Quotes/#{quote_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -1949,7 +1949,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Quotes/#{quote_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -1979,13 +1979,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Quotes")
     |> add_param(:body, :body, quotes)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Quotes{}},
@@ -2015,13 +2015,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:put)
     |> url("/Receipts")
     |> add_param(:body, :body, receipts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Receipts{}},
@@ -2069,7 +2069,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Receipts/#{receipt_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -2108,7 +2108,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Receipts/#{receipt_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -2156,7 +2156,7 @@ defmodule Xero.Api.Accounting do
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -2201,7 +2201,7 @@ defmodule Xero.Api.Accounting do
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/History")
     |> add_param(:body, :body, history_records)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}},
@@ -2231,7 +2231,7 @@ defmodule Xero.Api.Accounting do
     |> url("/TaxRates")
     |> add_param(:body, :body, tax_rates)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TaxRates{}},
@@ -2268,7 +2268,7 @@ defmodule Xero.Api.Accounting do
     |> url("/TrackingCategories")
     |> add_param(:body, :body, tracking_category)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingCategories{}},
@@ -2313,7 +2313,7 @@ defmodule Xero.Api.Accounting do
     |> url("/TrackingCategories/#{tracking_category_id}/Options")
     |> add_param(:body, :body, tracking_option)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingOptions{}},
@@ -2342,7 +2342,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/Accounts/#{account_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Accounts{}},
@@ -2383,7 +2383,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/ContactGroups/#{contact_group_id}/Contacts/#{contact_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {204, false},
@@ -2412,7 +2412,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/ContactGroups/#{contact_group_id}/Contacts")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {204, false}
@@ -2440,7 +2440,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/Items/#{item_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {204, false},
@@ -2469,7 +2469,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/LinkedTransactions/#{linked_transaction_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {204, false},
@@ -2506,7 +2506,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Payments/#{payment_id}")
     |> add_param(:body, :body, payment_delete)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Payments{}},
@@ -2537,7 +2537,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/TrackingCategories/#{tracking_category_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingCategories{}},
@@ -2575,7 +2575,7 @@ defmodule Xero.Api.Accounting do
     |> method(:delete)
     |> url("/TrackingCategories/#{tracking_category_id}/Options/#{tracking_option_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingOptions{}},
@@ -2611,7 +2611,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Invoices/#{invoice_id}/Email")
     |> add_param(:body, :body, request_empty)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {204, false},
@@ -2640,7 +2640,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Accounts/#{account_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Accounts{}}
@@ -2684,7 +2684,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Accounts/#{account_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -2728,7 +2728,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Accounts/#{account_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -2756,7 +2756,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Accounts/#{account_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -2788,12 +2788,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Accounts")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Accounts{}}
@@ -2822,12 +2822,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransactions{}}
@@ -2871,7 +2871,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -2915,7 +2915,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -2948,7 +2948,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -2984,12 +2984,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransactions")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransactions{}}
@@ -3017,7 +3017,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BankTransactions/#{bank_transaction_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -3045,7 +3045,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransfers{}}
@@ -3089,7 +3089,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3133,7 +3133,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3161,7 +3161,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -3189,7 +3189,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BankTransfers/#{bank_transfer_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -3221,12 +3221,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BankTransfers")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransfers{}}
@@ -3254,7 +3254,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BatchPayments/#{batch_payment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -3286,12 +3286,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/BatchPayments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BatchPayments{}}
@@ -3319,7 +3319,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BrandingThemes/#{branding_theme_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BrandingThemes{}}
@@ -3352,7 +3352,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BrandingThemes/#{branding_theme_id}/PaymentServices")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PaymentServices{}}
@@ -3379,7 +3379,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/BrandingThemes")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BrandingThemes{}}
@@ -3410,12 +3410,12 @@ defmodule Xero.Api.Accounting do
       :DateFrom => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Budgets/#{budget_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Budgets{}}
@@ -3447,12 +3447,12 @@ defmodule Xero.Api.Accounting do
       :DateFrom => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Budgets")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Budgets{}}
@@ -3480,7 +3480,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Contacts/#{contact_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}}
@@ -3524,7 +3524,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Contacts/#{contact_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3568,7 +3568,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Contacts/#{contact_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3596,7 +3596,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Contacts/#{contact_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -3624,7 +3624,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Contacts/#{contact_number}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}}
@@ -3652,7 +3652,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Contacts/#{contact_id}/CISSettings")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CisSettings{}}
@@ -3680,7 +3680,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/ContactGroups/#{contact_group_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ContactGroups{}}
@@ -3710,12 +3710,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ContactGroups")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ContactGroups{}}
@@ -3743,7 +3743,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Contacts/#{contact_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -3785,12 +3785,12 @@ defmodule Xero.Api.Accounting do
       :searchTerm => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Contacts")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}}
@@ -3819,12 +3819,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CreditNotes{}}
@@ -3852,7 +3852,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3896,7 +3896,7 @@ defmodule Xero.Api.Accounting do
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3940,7 +3940,7 @@ defmodule Xero.Api.Accounting do
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -3968,7 +3968,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -3996,7 +3996,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/CreditNotes/#{credit_note_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -4032,12 +4032,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/CreditNotes")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CreditNotes{}}
@@ -4067,12 +4067,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Currencies")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Currencies{}}
@@ -4100,7 +4100,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Employees/#{employee_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Employees{}}
@@ -4132,12 +4132,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Employees")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Employees{}}
@@ -4165,7 +4165,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/ExpenseClaims/#{expense_claim_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ExpenseClaims{}}
@@ -4193,7 +4193,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/ExpenseClaims/#{expense_claim_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -4225,12 +4225,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ExpenseClaims")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ExpenseClaims{}}
@@ -4259,12 +4259,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices/#{invoice_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Invoices{}}
@@ -4292,7 +4292,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -4336,7 +4336,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Invoices/#{invoice_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -4380,7 +4380,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Invoices/#{invoice_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -4408,7 +4408,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -4436,7 +4436,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -4463,7 +4463,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/InvoiceReminders/Settings")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.InvoiceReminders{}}
@@ -4513,12 +4513,12 @@ defmodule Xero.Api.Accounting do
       :summaryOnly => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Invoices")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Invoices{}}
@@ -4547,12 +4547,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Items/#{item_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Items{}}
@@ -4580,7 +4580,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Items/#{item_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -4614,12 +4614,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Items")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Items{}}
@@ -4647,7 +4647,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Journals/#{journal_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Journals{}}
@@ -4679,12 +4679,12 @@ defmodule Xero.Api.Accounting do
       :paymentsOnly => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Journals")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Journals{}}
@@ -4712,7 +4712,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/LinkedTransactions/#{linked_transaction_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.LinkedTransactions{}}
@@ -4750,12 +4750,12 @@ defmodule Xero.Api.Accounting do
       :TargetTransactionID => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/LinkedTransactions")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.LinkedTransactions{}}
@@ -4783,7 +4783,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ManualJournals{}}
@@ -4827,7 +4827,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -4871,7 +4871,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -4899,7 +4899,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -4933,12 +4933,12 @@ defmodule Xero.Api.Accounting do
       :page => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/ManualJournals")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ManualJournals{}}
@@ -4966,7 +4966,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/ManualJournals/#{manual_journal_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -4994,7 +4994,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Invoices/#{invoice_id}/OnlineInvoice")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.OnlineInvoices{}}
@@ -5021,7 +5021,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Organisation/Actions")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Actions{}}
@@ -5049,7 +5049,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Organisation/#{organisation_id}/CISSettings")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CisOrgSettings{}}
@@ -5076,7 +5076,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Organisation")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Organisations{}}
@@ -5104,7 +5104,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Overpayments/#{overpayment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Overpayments{}}
@@ -5132,7 +5132,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Overpayments/#{overpayment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -5168,12 +5168,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Overpayments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Overpayments{}}
@@ -5201,7 +5201,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Payments/#{payment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Payments{}}
@@ -5229,7 +5229,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Payments/#{payment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -5256,7 +5256,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/PaymentServices")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PaymentServices{}}
@@ -5290,12 +5290,12 @@ defmodule Xero.Api.Accounting do
       :page => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Payments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Payments{}}
@@ -5323,7 +5323,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Prepayments/#{prepayment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Prepayments{}}
@@ -5351,7 +5351,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Prepayments/#{prepayment_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -5387,12 +5387,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Prepayments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Prepayments{}}
@@ -5420,7 +5420,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PurchaseOrders{}}
@@ -5448,7 +5448,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -5492,7 +5492,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -5536,7 +5536,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -5564,7 +5564,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -5592,7 +5592,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_number}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PurchaseOrders{}}
@@ -5620,7 +5620,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/PurchaseOrders/#{purchase_order_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -5658,12 +5658,12 @@ defmodule Xero.Api.Accounting do
       :page => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/PurchaseOrders")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PurchaseOrders{}}
@@ -5691,7 +5691,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Quotes/#{quote_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Quotes{}}
@@ -5719,7 +5719,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Quotes/#{quote_id}/pdf")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -5763,7 +5763,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Quotes/#{quote_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -5807,7 +5807,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Quotes/#{quote_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -5835,7 +5835,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Quotes/#{quote_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -5863,7 +5863,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Quotes/#{quote_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -5909,12 +5909,12 @@ defmodule Xero.Api.Accounting do
       :QuoteNumber => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Quotes")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Quotes{}}
@@ -5943,12 +5943,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Receipts/#{receipt_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Receipts{}}
@@ -5992,7 +5992,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Receipts/#{receipt_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -6036,7 +6036,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Receipts/#{receipt_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -6064,7 +6064,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Receipts/#{receipt_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -6092,7 +6092,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Receipts/#{receipt_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -6126,12 +6126,12 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Receipts")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Receipts{}}
@@ -6159,7 +6159,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.RepeatingInvoices{}}
@@ -6203,7 +6203,7 @@ defmodule Xero.Api.Accounting do
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{file_name}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -6247,7 +6247,7 @@ defmodule Xero.Api.Accounting do
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{attachment_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:headers, :contentType, content_type)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, false}
@@ -6280,7 +6280,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}}
@@ -6308,7 +6308,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/History")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.HistoryRecords{}}
@@ -6338,12 +6338,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/RepeatingInvoices")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.RepeatingInvoices{}}
@@ -6376,13 +6376,13 @@ defmodule Xero.Api.Accounting do
       :toDate => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/AgedPayablesByContact")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:query, :contactId, contact_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6419,13 +6419,13 @@ defmodule Xero.Api.Accounting do
       :toDate => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/AgedReceivablesByContact")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_param(:query, :contactId, contact_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6465,12 +6465,12 @@ defmodule Xero.Api.Accounting do
       :paymentsOnly => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/BalanceSheet")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6500,12 +6500,12 @@ defmodule Xero.Api.Accounting do
       :toDate => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/BankSummary")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6537,12 +6537,12 @@ defmodule Xero.Api.Accounting do
       :timeframe => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/BudgetSummary")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6570,12 +6570,12 @@ defmodule Xero.Api.Accounting do
       :date => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/ExecutiveSummary")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6603,7 +6603,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Reports/#{report_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6649,12 +6649,12 @@ defmodule Xero.Api.Accounting do
       :paymentsOnly => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/ProfitAndLoss")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6682,12 +6682,12 @@ defmodule Xero.Api.Accounting do
       :reportYear => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/TenNinetyNine")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Reports{}}
@@ -6717,12 +6717,12 @@ defmodule Xero.Api.Accounting do
       :paymentsOnly => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Reports/TrialBalance")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6749,7 +6749,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Reports")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ReportWithRows{}}
@@ -6781,12 +6781,12 @@ defmodule Xero.Api.Accounting do
       :TaxType => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/TaxRates")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TaxRates{}}
@@ -6818,12 +6818,12 @@ defmodule Xero.Api.Accounting do
       :includeArchived => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/TrackingCategories")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingCategories{}}
@@ -6851,7 +6851,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/TrackingCategories/#{tracking_category_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingCategories{}}
@@ -6879,7 +6879,7 @@ defmodule Xero.Api.Accounting do
     |> method(:get)
     |> url("/Users/#{user_id}")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Users{}}
@@ -6911,12 +6911,12 @@ defmodule Xero.Api.Accounting do
       :order => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:get)
     |> url("/Users")
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Users{}}
@@ -6945,7 +6945,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Setup")
     |> add_param(:body, :body, setup)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ImportSummaryObject{}}
@@ -6981,7 +6981,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Accounts/#{account_id}")
     |> add_param(:body, :body, accounts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Accounts{}},
@@ -7029,7 +7029,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Accounts/#{account_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7074,13 +7074,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/BankTransactions/#{bank_transaction_id}")
     |> add_param(:body, :body, bank_transactions)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransactions{}},
@@ -7128,7 +7128,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransactions/#{bank_transaction_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7175,7 +7175,7 @@ defmodule Xero.Api.Accounting do
     |> url("/BankTransfers/#{bank_transfer_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7212,7 +7212,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Contacts/#{contact_id}")
     |> add_param(:body, :body, contacts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}},
@@ -7259,7 +7259,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Contacts/#{contact_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7304,7 +7304,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ContactGroups/#{contact_group_id}")
     |> add_param(:body, :body, contact_groups)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ContactGroups{}},
@@ -7343,13 +7343,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/CreditNotes/#{credit_note_id}")
     |> add_param(:body, :body, credit_notes)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CreditNotes{}},
@@ -7397,7 +7397,7 @@ defmodule Xero.Api.Accounting do
     |> url("/CreditNotes/#{credit_note_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7442,7 +7442,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ExpenseClaims/#{expense_claim_id}")
     |> add_param(:body, :body, expense_claims)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ExpenseClaims{}},
@@ -7479,13 +7479,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Invoices/#{invoice_id}")
     |> add_param(:body, :body, invoices)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Invoices{}},
@@ -7533,7 +7533,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Invoices/#{invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7564,13 +7564,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Items/#{item_id}")
     |> add_param(:body, :body, items)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Items{}},
@@ -7615,7 +7615,7 @@ defmodule Xero.Api.Accounting do
     |> url("/LinkedTransactions/#{linked_transaction_id}")
     |> add_param(:body, :body, linked_transactions)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.LinkedTransactions{}},
@@ -7660,7 +7660,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ManualJournals/#{manual_journal_id}")
     |> add_param(:body, :body, manual_journals)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ManualJournals{}},
@@ -7708,7 +7708,7 @@ defmodule Xero.Api.Accounting do
     |> url("/ManualJournals/#{manual_journal_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -7752,13 +7752,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/BankTransactions")
     |> add_param(:body, :body, bank_transactions)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.BankTransactions{}},
@@ -7793,13 +7793,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Contacts")
     |> add_param(:body, :body, contacts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Contacts{}},
@@ -7838,13 +7838,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/CreditNotes")
     |> add_param(:body, :body, credit_notes)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.CreditNotes{}},
@@ -7879,13 +7879,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Employees")
     |> add_param(:body, :body, employees)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Employees{}},
@@ -7922,13 +7922,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Invoices")
     |> add_param(:body, :body, invoices)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Invoices{}},
@@ -7960,13 +7960,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Items")
     |> add_param(:body, :body, items)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Items{}},
@@ -8003,13 +8003,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/ManualJournals")
     |> add_param(:body, :body, manual_journals)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.ManualJournals{}},
@@ -8046,13 +8046,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/PurchaseOrders")
     |> add_param(:body, :body, purchase_orders)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PurchaseOrders{}},
@@ -8082,13 +8082,13 @@ defmodule Xero.Api.Accounting do
       :summarizeErrors => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Quotes")
     |> add_param(:body, :body, quotes)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Quotes{}},
@@ -8133,7 +8133,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PurchaseOrders/#{purchase_order_id}")
     |> add_param(:body, :body, purchase_orders)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.PurchaseOrders{}},
@@ -8181,7 +8181,7 @@ defmodule Xero.Api.Accounting do
     |> url("/PurchaseOrders/#{purchase_order_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -8212,7 +8212,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Quotes/#{quote_id}")
     |> add_param(:body, :body, quotes)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Quotes{}},
@@ -8260,7 +8260,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Quotes/#{quote_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -8297,13 +8297,13 @@ defmodule Xero.Api.Accounting do
       :unitdp => :query
     }
 
-    %{}
+    %Tesla.Env{}
     |> method(:post)
     |> url("/Receipts/#{receipt_id}")
     |> add_param(:body, :body, receipts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
     |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Receipts{}},
@@ -8351,7 +8351,7 @@ defmodule Xero.Api.Accounting do
     |> url("/Receipts/#{receipt_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -8399,7 +8399,7 @@ defmodule Xero.Api.Accounting do
     |> url("/RepeatingInvoices/#{repeating_invoice_id}/Attachments/#{file_name}")
     |> add_param(:body, :body, body)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.Attachments{}},
@@ -8429,7 +8429,7 @@ defmodule Xero.Api.Accounting do
     |> url("/TaxRates")
     |> add_param(:body, :body, tax_rates)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TaxRates{}},
@@ -8474,7 +8474,7 @@ defmodule Xero.Api.Accounting do
     |> url("/TrackingCategories/#{tracking_category_id}")
     |> add_param(:body, :body, tracking_category)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingCategories{}},
@@ -8522,7 +8522,7 @@ defmodule Xero.Api.Accounting do
     |> url("/TrackingCategories/#{tracking_category_id}/Options/#{tracking_option_id}")
     |> add_param(:body, :body, tracking_option)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
-    |> Enum.into([])
+    |> Map.to_list()
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       {200, %Xero.Model.TrackingOptions{}},
