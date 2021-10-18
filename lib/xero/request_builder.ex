@@ -21,7 +21,7 @@ defmodule Xero.RequestBuilder do
   """
   @spec method(map(), atom) :: map()
   def method(request, m) do
-    Map.put_new(request, :method, m)
+    Map.put(request, :method, m)
   end
 
   @doc """
@@ -38,7 +38,7 @@ defmodule Xero.RequestBuilder do
   """
   @spec url(map(), String.t()) :: map()
   def url(request, u) do
-    Map.put_new(request, :url, u)
+    Map.put(request, :url, u)
   end
 
   @doc """
@@ -137,7 +137,7 @@ defmodule Xero.RequestBuilder do
   end
 
   def ensure_body(request) do
-    Map.put_new(request, :body, "")
+    Map.put(request, :body, "")
   end
 
   @doc """
