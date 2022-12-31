@@ -677,7 +677,7 @@ defmodule Xero.Api.Accounting do
     }
 
     %Tesla.Env{}
-    |> method(:put)
+    |> method(:post)
     |> url("/Contacts")
     |> add_param(:body, :body, contacts)
     |> add_param(:headers, :"xero-tenant-id", xero_tenant_id)
